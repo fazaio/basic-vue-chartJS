@@ -1,43 +1,49 @@
 <template>
-	<div class="area">
-        <lineChart></lineChart>
-        <barChart></barChart>
-        <doughnut></doughnut>
-	</div>
+    <div class="container">
+        <linechart v-if="loaded" :chartdata="chartdata"/>
+        <barchart v-if="loaded" :bardata="chartdata"/>
+        <doughnut/>
+    </div>
 </template>
 <script>
-// import ba from './bar.js'
-import lineChart from './linechart.js'
-import barChart from './barchart.js'
+import linechart from './linechart.js'
+import barchart from './barchart.js'
 import doughnut from './doughnutchart.js'
 
 export default {
     components: {
-        lineChart,
-        barChart,
+        linechart,
+        barchart,
         doughnut
     },
-    data: function() {
-        return {
-            dataCol: null,
-            loaded: false
-        }
-    },
-    mounted() {
-        this.getChart()
-    },
-    methods: {
-        getChart() {
-            this.dataCol = {
-                labels: [0, 1, 44, 3, 4],
+    data: () => ({
+        loaded: false,
+        chartdata: null
+    }),
+    async mounted() {
+        this.chartdata = {
+                labels: [1, 2, 3, 4],
                 datasets: [{
-                    label: 'tes',
-                    backgroundColor: 'salmon',
-                    borderColor: 'lightblue',
-                    data: [3, 2, 3, 4,2.4]
-                }]
-            }
-        }
+                        label: 'Meninggal',
+                        borderColor: 'rgb(220,53,69,0.7)',
+                        backgroundColor: 'rgb(220,53,69,0.2)',
+                        data: [1, 2, 3, 4]
+                    },
+                    {
+                        label: 'Konfirmasi',
+                        borderColor: 'rgb(0,184,148,0.7)',
+                        backgroundColor: 'rgb(0,184,148, 0.2)',
+                        data: [1, 2, 3, 4]
+                    },
+                    {
+                        label: 'Sembuh',
+                        borderColor: 'rgb(9, 132, 227, 0.7)',
+                        backgroundColor: 'rgb(9, 132, 227, 0.2)',
+                        data: [1, 2, 3, 4]
+                    }
+                ]
+            },
+            this.loaded = true
     }
 }
 </script>
