@@ -3,12 +3,12 @@ import { Line } from 'vue-chartjs'
 export default {
   extends: Line,
   props: {
-    chartdata: {
+    linedata: {
       type: Object,
       default: null
     }
   },
   mounted () {
-    this.renderChart(this.chartdata, { responsive: true, maintainAspectRatio: false })
+    this.renderChart(this.linedata, { responsive: true, maintainAspectRatio: false })
   }
 }
